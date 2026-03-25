@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - DevLoom</title>
+  <link rel="stylesheet" href="/styles/login.css" />
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-card">
+      <h2>Welcome Back</h2>
+      <p>Sign in to continue to DevLoom</p>
+      <form id="loginForm">
+        <input type="text" id="username" placeholder="Username" required />
+        <input type="password" id="password" placeholder="Password" required />
+        <button type="submit">Login</button>
+      </form>
+      <p class="signup-link">Don't have an account? <a href="#">Sign up</a></p>
+    </div>
+  </div>
+
+  <!-- Floating Theme Toggle -->
+  <button id="themeToggle" class="theme-toggle">🌙</button>
+
+  <script>
+    // Simulate login
+    const loginForm = document.getElementById('loginForm');
+    loginForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      if(username && password){
+        localStorage.setItem('user', username);
+        window.location.href = 'index.html';
+      } else {
+        alert('Please enter valid credentials');
+      }
+    });
+
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+
+    // Detect theme from index.html
+    if(localStorage.getItem('theme') === 'true'){
+      document.body.classList.add('light');
+      themeToggle.textContent = '🌙';
+    } else {
+      document.body.classList.remove('light');
+      themeToggle.textContent = '☀️';
+    }
+
+    themeToggle.onclick = () => {
+      document.body.classList.toggle('light');
+      const isLight = document.body.classList.contains('light');
+      localStorage.setItem('theme', isLight);
+      themeToggle.textContent = isLight ? '🌙' : '☀️';
+    };
+  </script>
+</body>
+</html>
