@@ -1,15 +1,5 @@
-
-// ================= APPLY SAVED THEME =================
-const savedTheme = localStorage.getItem("theme");
-
-if(savedTheme === "light"){
-  document.body.classList.add("light");
-} else {
-  document.body.classList.add("dark");
-}
-
-// ================= SAMPLE PROJECT DATA =================
-let projects = [
+// ================= PROJECT DATA =================
+let projects = JSON.parse(localStorage.getItem("projects")) || [
   { name: "Frontend Revamp", description: "Redesign dashboard UI for better UX." },
   { name: "Backend API", description: "Develop REST API for project management." },
   { name: "AI Tool Integration", description: "Integrate GPT-powered tools." }
@@ -19,70 +9,77 @@ const projectContainer = document.getElementById("projectCards");
 
 // ================= ADD PROJECT BUTTON =================
 const addBtn = document.createElement("button");
-addBtn.textContent = "Add Project";
+addBtn.textContent = "+ Add Project";
 addBtn.className = "add-project-btn";
-addBtn.onclick = () => {
+document.querySelector(".main").insertBefore(addBtn, projectContainer);
+
+addBtn.addEventListener("click", () => {
   const name = prompt("Enter project name:");
+  if (!name?.trim()) return;
+
   const desc = prompt("Enter project description:");
-  if(name && desc){
-    projects.push({ name, description: desc });
-    renderProjects();
-  }
-};
+  if (!desc?.trim()) return;
 
-// Add button at top of main content
-document.querySelector(".main").prepend(addBtn);
+  projects.unshift({ name: name.trim(), description: desc.trim() });
+  saveProjects();
+  renderProjects();
+});
 
-// ================= RENDER PROJECTS =================
+// ================= SAVE =================
+function saveProjects() {
+  localStorage.setItem("projects", JSON.stringify(projects));
+}
+
+// ================= RENDER =================
 function renderProjects() {
   projectContainer.innerHTML = "";
-  projects.forEach((p, index) => {
+
+  projects.forEach((p, idx) => {
     const card = document.createElement("div");
     card.className = "project-card";
+
     card.innerHTML = `
       <h3>${p.name}</h3>
       <p>${p.description}</p>
-      <div>
-        <button class="update-btn" onclick="updateProject(${index})">Update</button>
-        <button class="delete-btn" onclick="removeProject(${index})">Delete</button>
+      <div class="card-actions">
+        <button class="update-btn" data-idx="${idx}">Update</button>
+        <button class="delete-btn" data-idx="${idx}">Delete</button>
       </div>
     `;
+
     projectContainer.appendChild(card);
   });
 }
 
-// ================= DELETE PROJECT =================
-function removeProject(index) {
-  projects.splice(index, 1);
-  renderProjects();
-}
+// ================= EVENT DELEGATION =================
+projectContainer.addEventListener("click", (e) => {
+  const idx = e.target.dataset.idx;
+  if (e.target.classList.contains("update-btn")) {
+    const project = projects[idx];
+    const newName = prompt("Update project name:", project.name);
+    if (!newName?.trim()) return;
 
-// ================= UPDATE PROJECT =================
-function updateProject(index) {
-  const name = prompt("Update project name:", projects[index].name);
-  const desc = prompt("Update project description:", projects[index].description);
-  if(name && desc){
-    projects[index].name = name;
-    projects[index].description = desc;
+    const newDesc = prompt("Update project description:", project.description);
+    if (!newDesc?.trim()) return;
+
+    projects[idx] = { name: newName.trim(), description: newDesc.trim() };
+    saveProjects();
     renderProjects();
   }
-}
 
-// ================= INITIAL RENDER =================
-renderProjects();
+  if (e.target.classList.contains("delete-btn")) {
+    if (!confirm("Delete this project?")) return;
 
-// ================= THEME TOGGLE =================
-// ================= THEME TOGGLE =================
-const themeBtn = document.getElementById("themeToggle");
+    const card = e.target.closest(".project-card");
+    card.classList.add("fade-out");
 
-themeBtn.addEventListener("click", () => {
-  if (document.body.classList.contains("light")) {
-    document.body.classList.remove("light");
-    document.body.classList.add("dark");
-    localStorage.setItem("theme", "dark"); // SAVE
-  } else {
-    document.body.classList.remove("dark");
-    document.body.classList.add("light");
-    localStorage.setItem("theme", "light"); // SAVE
+    setTimeout(() => {
+      projects.splice(idx, 1);
+      saveProjects();
+      renderProjects();
+    }, 300);
   }
 });
+
+// ================= INITIAL LOAD =================
+renderProjects();

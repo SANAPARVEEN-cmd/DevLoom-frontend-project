@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Community</title>
+  <link rel="stylesheet" href="/styles/community.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="logo">DevLoom</div>
+
+  <nav>
+    <a href="index.html">Dashboard</a>
+    <a href="project.html">Projects</a>
+    <a href="community.html" class="active">Community</a>
+    <a href="resources.html">Resources</a>
+  </nav>
+
+  <div class="actions">
+    <button id="themeToggle">🌙</button>
+    <a href="login.html"><button id="loginBtn">Login</button></a>
+  </div>
+</header>
+
+<!-- LAYOUT -->
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <ul>
+      <li><a href="index.html">🏠 Dashboard</a></li>
+      <li><a href="project.html">📁 Projects</a></li>
+      <li class="active">👥 Community</li>
+      <li><a href="resources.html">📚 Resources</a></li>
+      <li><a href="#">⚙️ Settings</a></li>
+    </ul>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- HEADER -->
+    <section class="community-header">
+      <h1>👥 Dev Community</h1>
+      <p>Connect, share ideas, and grow with developers worldwide.</p>
+      <button class="create-post-btn">+ Create Post</button>
+    </section>
+
+    <!-- CONTENT GRID -->
+    <div class="community-container">
+
+      <!-- POSTS -->
+      <div class="posts">
+
+        <div class="post-card">
+          <h3>🚀 How I built my first full-stack app</h3>
+          <p>I just completed my first MERN stack project and learned a lot about APIs and deployment...</p>
+          <div class="post-footer">
+            <span>👍 120 Likes</span>
+            <span>💬 45 Comments</span>
+          </div>
+        </div>
+
+        <div class="post-card">
+          <h3>💡 Best resources to learn JavaScript?</h3>
+          <p>Can anyone suggest good tutorials or courses for mastering JavaScript?</p>
+          <div class="post-footer">
+            <span>👍 89 Likes</span>
+            <span>💬 30 Comments</span>
+          </div>
+        </div>
+
+        <div class="post-card">
+          <h3>🔥 CSS Tricks You Should Know</h3>
+          <p>Sharing some cool CSS tips that improved my UI designs massively...</p>
+          <div class="post-footer">
+            <span>👍 150 Likes</span>
+            <span>💬 60 Comments</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT SIDEBAR -->
+      <div class="community-sidebar">
+
+        <div class="community-box">
+          <h4>🔥 Trending Topics</h4>
+          <ul>
+            <li>#JavaScript</li>
+            <li>#WebDevelopment</li>
+            <li>#AI</li>
+            <li>#React</li>
+          </ul>
+        </div>
+
+        <div class="community-box">
+          <h4>💬 Active Members</h4>
+          <ul>
+            <li>Ali Dev</li>
+            <li>Sara Khan</li>
+            <li>Ahmed Raza</li>
+            <li>Zain Ali</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+</div>
+
+<!-- FOOTER (OUTSIDE LAYOUT ✅) -->
+<footer class="footer">
+
+  <div class="footer-top">
+    <div class="footer-brand">
+      <h2>DevLoom</h2>
+      <p>Weaving ideas into powerful digital solutions. Build, learn, and grow with developers worldwide.</p>
+    </div>
+
+    <div class="footer-links">
+      <div class="link-section">
+        <h4>Product</h4>
+        <a href="index.html">Dashboard</a>
+        <a href="project.html">Projects</a>
+        <a href="community.html">Community</a>
+      </div>
+
+      <div class="link-section">
+        <h4>Resources</h4>
+        <a href="#">Tutorials</a>
+        <a href="#">Docs</a>
+        <a href="#">Support</a>
+      </div>
+
+      <div class="link-section">
+        <h4>Company</h4>
+        <a href="#">About</a>
+        <a href="#">Careers</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+
+    <div class="footer-newsletter">
+      <h4>Stay Updated</h4>
+      <p>Get latest updates & features</p>
+      <div class="newsletter-box">
+        <input type="email" placeholder="Enter your email">
+        <button>Subscribe</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 DevLoom. All rights reserved.</p>
+    <div class="footer-socials">
+      <span>🌐</span>
+      <span>🐦</span>
+      <span>💼</span>
+    </div>
+  </div>
+
+</footer>
+<script src="/scriptx/common.js"></script>
+<script src="/scriptx/community.js"></script>
+</body>
+</html>

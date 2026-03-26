@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings - DevLoom</title>
+  <link rel="stylesheet" href="/styles/common.css">
+  <link rel="stylesheet" href="/styles/setting.css">
+</head>
+<body>
+  <!-- HEADER & SIDEBAR handled by common.css -->
+ <header class="header">
+    <div class="logo">DevLoom</div>
+    <nav>
+      <a href="index.html">Dashboard</a>
+      <a href="project.html">Projects</a>
+      <a href="community.html">Community</a>
+      <a href="resources.html" class="active">Resources</a>
+    </nav>
+    <div class="actions">
+      <button id="themeToggle">🌙</button>
+      <a href="login.html"><button id = "loginBtn">Login</button></a>
+    </div>
+  </header>
+
+  <div class="layout">
+    <!-- SIDEBAR is common -->
+<aside class="sidebar">
+      <ul>
+        <a href="index.html" style="text-decoration:none; color:white"><li>🏠 Dashboard</li></a>
+        <a href="project.html" style="text-decoration:none; color:white"><li>📁 Projects</li></a>
+        <a href="community.html" style="text-decoration:none; color:white"><li>👥 Community</li></a>
+       <a href="resources.html"> <li>📚 Resources</li></a>
+        <li class="active">⚙️ Settings</li>
+      </ul>
+    </aside>
+
+    <main class="main-content setting-main">
+      <h1>⚙️ Settings</h1>
+      <p>Customize your DevLoom experience and manage your account preferences.</p>
+
+      <!-- ACCOUNT SETTINGS -->
+      <section class="settings-section">
+        <h2>Account</h2>
+        <div class="setting-item">
+          <label for="username">Username</label>
+          <input type="text" id="username" placeholder="Enter your username">
+          <button class="save-btn">Save</button>
+        </div>
+        <div class="setting-item">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="Enter your email">
+          <button class="save-btn">Save</button>
+        </div>
+      </section>
+
+      <!-- PREFERENCES -->
+      <section class="settings-section">
+        <h2>Preferences</h2>
+        <div class="setting-item">
+          <label for="notifications">Enable Notifications</label>
+          <input type="checkbox" id="notifications" checked>
+        </div>
+        <div class="setting-item">
+          <label for="darkmode">Dark Mode</label>
+          <input type="checkbox" id="darkmode">
+        </div>
+      </section>
+
+      <!-- SECURITY -->
+      <section class="settings-section">
+        <h2>Security</h2>
+        <div class="setting-item">
+          <label for="password">Change Password</label>
+          <input type="password" id="password" placeholder="New password">
+          <button class="save-btn">Update</button>
+        </div>
+      </section>
+    </main>
+  </div>
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <h2>DevLoom</h2>
+        <p>Weaving ideas into powerful digital solutions.</p>
+      </div>
+
+      <div class="footer-links">
+        <div class="link-section">
+          <h4>Product</h4>
+          <a href="index.html">Dashboard</a>
+          <a href="project.html">Projects</a>
+          <a href="community.html">Community</a>
+        </div>
+
+        <div class="link-section">
+          <h4>Resources</h4>
+          <a href="#">Tutorials</a>
+          <a href="#">Docs</a>
+        </div>
+
+        <div class="link-section">
+          <h4>Company</h4>
+          <a href="#">About</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+
+      <div class="footer-newsletter">
+        <h4>Stay Updated</h4>
+        <div class="newsletter-box">
+          <input type="email" placeholder="Enter your email"/>
+          <button>Subscribe</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 DevLoom</p>
+    </div>
+  </footer>
+
+  <script src="/scriptx/common.js"></script>
+  <script src="/scriptx/setting.js"></script>
+</body>
+</html>
