@@ -23,6 +23,40 @@
 .widget h3 {
   margin-bottom: 10px;
 }
+.sidebar ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar li {
+  padding: 14px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  color: var(--text);
+}
+
+.sidebar li a {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.sidebar li:hover,
+.sidebar li.active {
+  background: var(--card);
+  color: var(--accent);
+  transform: translateX(4px);
+}
 
 /* ================= CARDS ================= */
 .cards {

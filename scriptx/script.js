@@ -1,11 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // ================= APPLY SAVED THEME =================
-  const savedTheme = localStorage.getItem("theme");
-  if (savedTheme === "light") {
-    document.body.classList.add("light");
-  } else {
-    document.body.classList.add("dark");
-  }
 
   // ================= ELEMENTS =================
   const dashboard = document.getElementById("dashboard");
@@ -13,7 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const announcements = document.getElementById("announcements");
   const welcome = document.getElementById("welcome");
   const loginBtn = document.getElementById("loginBtn");
-  const themeBtn = document.getElementById("themeToggle");
 
   // ================= DATA =================
   const dashboardData = [
@@ -37,33 +29,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ================= FUNCTIONS =================
 
-  // Animated Counter
   const animateValue = (el, start, end, duration) => {
     let startTime = null;
+
     const step = (time) => {
       if (!startTime) startTime = time;
       const progress = Math.min((time - startTime) / duration, 1);
       el.textContent = Math.floor(progress * (end - start) + start);
+
       if (progress < 1) requestAnimationFrame(step);
     };
+
     requestAnimationFrame(step);
   };
 
-  // Render Dashboard
   const renderDashboard = () => {
+    if (!dashboard) return;
+
     dashboard.innerHTML = "";
+
     dashboardData.forEach(item => {
       const div = document.createElement("div");
       div.className = "widget";
       div.innerHTML = `<h3>${item.title}</h3><p>0</p>`;
       dashboard.appendChild(div);
+
       animateValue(div.querySelector("p"), 0, item.value, 1000);
     });
   };
 
-  // Render Cards
   const renderCards = () => {
+    if (!cards) return;
+
     cards.innerHTML = "";
+
     cardsData.forEach(c => {
       const div = document.createElement("div");
       div.className = "card";
@@ -72,9 +71,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  // Render Announcements
   const renderAnnouncements = () => {
+    if (!announcements) return;
+
     announcements.innerHTML = "";
+
     announcementsData.forEach(a => {
       const p = document.createElement("p");
       p.textContent = a;
@@ -82,39 +83,34 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  // Update User Greeting
   const updateUser = () => {
+    if (!welcome) return;
+
     const user = localStorage.getItem("user");
-    welcome.textContent = user ? `Welcome, ${user} 👋` : "Welcome, Guest 👋";
+    welcome.textContent = user
+      ? `Welcome, ${user} 👋`
+      : "Welcome, Guest 👋";
   };
 
-  // Toggle Login Simulation
-  loginBtn.onclick = () => {
-    const user = localStorage.getItem("user");
-    if (user) {
-      localStorage.removeItem("user");
-    } else {
-      localStorage.setItem("user", "DevUser");
-    }
-    updateUser();
-  };
+  // Login simulation
+  if (loginBtn) {
+    loginBtn.onclick = () => {
+      const user = localStorage.getItem("user");
 
-  // Theme Toggle
-  themeBtn.addEventListener("click", () => {
-    if (document.body.classList.contains("light")) {
-      document.body.classList.remove("light");
-      document.body.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.body.classList.remove("dark");
-      document.body.classList.add("light");
-      localStorage.setItem("theme", "light");
-    }
-  });
+      if (user) {
+        localStorage.removeItem("user");
+      } else {
+        localStorage.setItem("user", "DevUser");
+      }
+
+      updateUser();
+    };
+  }
 
   // ================= INITIAL RENDER =================
   updateUser();
   renderDashboard();
   renderCards();
   renderAnnouncements();
+
 });

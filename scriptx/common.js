@@ -1,30 +1,28 @@
-// ================= THEME TOGGLE =================
-const themeBtn = document.getElementById("themeToggle");
+document.addEventListener("DOMContentLoaded", () => {
 
-// Apply saved theme
-const savedTheme = localStorage.getItem("theme");
-if(savedTheme){
+  const themeBtn = document.getElementById("themeToggle");
+  if (!themeBtn) return;
+
+  const THEME_KEY = "theme";
+
+  // Apply saved theme
+  let savedTheme = localStorage.getItem(THEME_KEY) || "dark";
   document.body.classList.add(savedTheme);
-}else{
-  document.body.classList.add("dark"); // default
-}
 
-// Toggle theme on click
-themeBtn.addEventListener("click", () => {
-  if(document.body.classList.contains("light")){
-    document.body.classList.replace("light","dark");
-    localStorage.setItem("theme","dark");
-    themeBtn.textContent = "🌙"; // moon icon for dark
-  } else {
-    document.body.classList.replace("dark","light");
-    localStorage.setItem("theme","light");
-    themeBtn.textContent = "☀️"; // sun icon for light
-  }
+  // Set icon
+  themeBtn.textContent = savedTheme === "light" ? "☀️" : "🌙";
+
+  // Toggle theme
+  themeBtn.addEventListener("click", () => {
+    if (document.body.classList.contains("light")) {
+      document.body.classList.replace("light", "dark");
+      localStorage.setItem(THEME_KEY, "dark");
+      themeBtn.textContent = "🌙";
+    } else {
+      document.body.classList.replace("dark", "light");
+      localStorage.setItem(THEME_KEY, "light");
+      themeBtn.textContent = "☀️";
+    }
+  });
+
 });
-
-// Set button icon initially based on saved theme
-if(document.body.classList.contains("light")){
-  themeBtn.textContent = "☀️";
-}else{
-  themeBtn.textContent = "🌙";
-}
